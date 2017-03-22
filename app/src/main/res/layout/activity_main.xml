@@ -15,8 +15,10 @@
         android:id="@+id/calcViewWrapper"
         android:layout_centerInParent="false"
         android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="false"
+        android:layout_above="@+id/allWrapper"
+        android:paddingBottom="45dp">
 
         <TextView
             android:text="TextView"
@@ -59,184 +61,205 @@
             android:paddingLeft="5dp" />
     </LinearLayout>
 
-    <GridLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:id="@+id/gridWrapper"
-        android:rowCount="4"
-        android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="false"
-        android:layout_below="@+id/calcViewWrapper"
-        android:layout_centerHorizontal="true">
+        android:layout_centerVertical="false"
+        android:layout_alignParentEnd="true"
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/allWrapper">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <GridLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:text="BS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/backspace"
-                android:onClick="onBackspace" />
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:id="@+id/gridWrapper"
+            android:layout_gravity="center"
+            android:rowCount="4">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+                <Button
+                    android:text="BS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/backspace"
+                    android:onClick="onBackspace" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:text="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_1"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+
+                    <Button
+                        android:text="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_2"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:text="4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_4"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+
+                    <Button
+                        android:text="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_5"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:text="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_7"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+
+                    <Button
+                        android:text="8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_8"
+                        android:layout_weight="1"
+                        android:onClick="onNumberClick" />
+                </LinearLayout>
+
+                <Button
+                    android:text="0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/number_0"
+                    android:onClick="onNumberClick" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:text="1"
-                    android:layout_width="wrap_content"
+                    android:text="C"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/number_1"
-                    android:layout_weight="1"
+                    android:id="@+id/button20"
+                    android:onClick="onReset" />
+
+                <Button
+                    android:text="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/number_3"
                     android:onClick="onNumberClick" />
 
                 <Button
-                    android:text="2"
-                    android:layout_width="wrap_content"
+                    android:text="6"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/number_2"
-                    android:layout_weight="1"
+                    android:id="@+id/number_6"
                     android:onClick="onNumberClick" />
+
+                <Button
+                    android:text="9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/number_9"
+                    android:onClick="onNumberClick" />
+
+                <Button
+                    android:text=","
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/coma"
+                    android:onClick="onComa" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:text="4"
-                    android:layout_width="wrap_content"
+                    android:text="+/-"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/number_4"
-                    android:layout_weight="1"
-                    android:onClick="onNumberClick" />
+                    android:id="@+id/changeSign"
+                    android:onClick="onChangeSign" />
 
                 <Button
-                    android:text="5"
-                    android:layout_width="wrap_content"
+                    android:text="+"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/number_5"
-                    android:layout_weight="1"
-                    android:onClick="onNumberClick" />
+                    android:id="@+id/plus"
+                    android:onClick="onOperationClick" />
+
+                <Button
+                    android:text="-"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/minus"
+                    android:onClick="onOperationClick" />
+
+                <Button
+                    android:text="/"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/divide"
+                    android:onClick="onOperationClick" />
+
+                <Button
+                    android:text="*"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/multiply"
+                    android:onClick="onOperationClick" />
             </LinearLayout>
+        </GridLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <Button
+            android:text="="
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/equal"
+            android:onClick="onEqual"
+            android:layout_weight="1" />
 
-                <Button
-                    android:text="7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/number_7"
-                    android:layout_weight="1"
-                    android:onClick="onNumberClick" />
-
-                <Button
-                    android:text="8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/number_8"
-                    android:layout_weight="1"
-                    android:onClick="onNumberClick" />
-            </LinearLayout>
-
-            <Button
-                android:text="="
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/equal"
-                android:onClick="onEqual" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:text="C"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button20"
-                android:onClick="onReset" />
-
-            <Button
-                android:text="3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/number_3"
-                android:onClick="onNumberClick" />
-
-            <Button
-                android:text="6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/number_6"
-                android:onClick="onNumberClick" />
-
-            <Button
-                android:text="9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/number_9"
-                android:onClick="onNumberClick" />
-
-            <Button
-                android:text="0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/number_0"
-                android:onClick="onNumberClick" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:text="+/-"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/changeSign"
-                android:onClick="onChangeSign" />
-
-            <Button
-                android:text="+"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/plus"
-                android:onClick="onOperationClick" />
-
-            <Button
-                android:text="-"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/minus"
-                android:onClick="onOperationClick" />
-
-            <Button
-                android:text="/"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/divide"
-                android:onClick="onOperationClick" />
-
-            <Button
-                android:text="*"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/multiply"
-                android:onClick="onOperationClick" />
-        </LinearLayout>
-    </GridLayout>
+    </LinearLayout>
 
 </RelativeLayout>

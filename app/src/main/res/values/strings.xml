@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Daniel_Slaby_Zadanie_Kalkulator</string>
+    <string name="app_name">Daniel Slaby Calculator</string>
+    <string name="invalid_operation">Invalid Operation</string>
 </resources>

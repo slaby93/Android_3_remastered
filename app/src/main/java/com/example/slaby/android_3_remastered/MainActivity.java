@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onNumberClick(View view) {
         if (isFinished) {
-            showError("Can't input numbers");
+            showError();
             return;
         }
         Button btn = (Button) view;
@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
     public void updateResults() {
         clearText();
         if (calculator.number1 == null && calculator.operation == null && calculator.number0 != null) {
+            if (calculator.doesNumber0HasComa) {
+                setText(result3, calculator.number0.toString() + ".");
+                return;
+            }
             setText(result3, calculator.number0.toString());
             return;
         }
@@ -72,9 +76,16 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (calculator.number1 != null && calculator.operation != null && calculator.number0 != null) {
+
             setText(result1, calculator.number0.toString());
             setText(result2, calculator.operation);
-            setText(result3, calculator.number1.toString());
+            if (calculator.doesNumber1HasComa) {
+                setText(result3, calculator.number1.toString() + ".");
+            }else{
+                setText(result3, calculator.number1.toString());
+            }
+
+
             return;
         }
         if (calculator.number1 == null && calculator.operation == null && calculator.number0 == null) {
@@ -90,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
         setText(result3, "= " + result.toString());
     }
 
-    public void showError(String text) {
+    public void showError() {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
+        String errorText = getResources().getString(R.string.invalid_operation);
+        Toast toast = Toast.makeText(context, errorText, duration);
         toast.show();
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
@@ -103,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onOperationClick(View view) {
         if (isFinished) {
-            showError("Can't input new operation");
+            showError();
             return;
         }
         if (calculator.number0 == null || (calculator.number0 != null && calculator.number1 != null)) {
-            showError("Can't insert now operation!");
+            showError();
             return;
         }
         Button btn = (Button) view;
@@ -118,22 +129,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void onEqual(View view) {
         if (isFinished) {
-            showError("Result already displayed");
+            showError();
             return;
         }
         if (calculator.number0 == null || calculator.operation == null || calculator.number1 == null) {
-            showError("Finish equation first!");
+            showError();
             return;
         }
         if (calculator.number1.doubleValue() == 0 && calculator.operation.equals("/")) {
-            showError("Can't divide by 0");
+            String errorString = getResources().getString(R.string.invalid_operation);
+            setText(result0, calculator.number0.toString());
+            setText(result1, calculator.operation);
+            setText(result2, calculator.number1.toString());
+            setText(result3, errorString);
+            isFinished = true;
             return;
         }
         Number result;
         try {
             result = calculator.computeOutput();
         } catch (ArithmeticException exception) {
-            showError("Result is too big!");
+            showError();
             return;
         }
 
@@ -143,18 +159,47 @@ public class MainActivity extends AppCompatActivity {
 
     public void onChangeSign(View view) {
         if (isFinished) {
-            showError("Can't change sign right now");
+            showError();
             return;
         }
         if (calculator.number0 != null && calculator.number1 == null && calculator.operation != null) {
-            showError("Can't change sign right now!");
+            showError();
             return;
         } else if (calculator.number0 == null || calculator.number0 == null && calculator.number1 == null) {
-            showError("Input some number first");
+            showError();
             return;
         }
         calculator.changeSign();
         updateResults();
+    }
+
+    public void onComa(View view) {
+
+        System.out.println("ABDUL"+ calculator.number0 + "  " + calculator.number1);
+
+        if (calculator.number0 == null) {
+            showError();
+            return;
+        }
+        if (calculator.number0 != null && !calculator.can0HasMoreComas && calculator.operation == null) {
+            showError();
+            return;
+        }
+        if (calculator.number0 != null && calculator.operation != null && calculator.number1 == null) {
+            showError();
+            return;
+        }
+        if (calculator.number0 != null && calculator.operation != null && calculator.number1!= null && !calculator.can1HasMoreComas) {
+            showError();
+            return;
+        }
+        if (isFinished) {
+            showError();
+            return;
+        }
+        calculator.addComa();
+        updateResults();
+
     }
 
     public void onReset(View view) {
@@ -165,9 +210,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBackspace(View view) {
         if (calculator.number0 == null) {
-            showError("Nothing to backspace");
+            showError();
             return;
         }
+
+        if (isFinished) {
+            showError();
+            return;
+        }
+
         isFinished = false;
         calculator.backSpace();
         updateResults();
